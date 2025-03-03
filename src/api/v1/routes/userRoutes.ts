@@ -2,6 +2,7 @@ import express, { Router } from "express";
 import { getUserProfile, deleteUser } from "../controllers/userController";
 import authenticate from "../middleware/authenticate";
 import isAuthorized from "../middleware/authorize";
+import { getUserDetails } from "../controllers/userController";
 
 const router: Router = express.Router();
 
@@ -21,4 +22,10 @@ router.delete(
   deleteUser
 );
 
+router.get(
+    "/:uid",
+    authenticate,
+    isAuthorized({ hasRole: ["admin", "Teacher"], allowSameUser: true }),
+    getUserDetails
+);
 export default router;
