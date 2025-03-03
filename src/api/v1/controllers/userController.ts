@@ -2,7 +2,6 @@ import { Request, Response, NextFunction } from "express";
 import { UserRecord } from "firebase-admin/auth";
 import { auth } from "../../../config/firebaseConfig";
 
-
 /**
  * Controller to get the user profile.
  * @param req - Incoming request object.
@@ -47,22 +46,5 @@ export const getUserDetails = async (
     res.status(200).json(user);
   } catch (error: unknown) {
     next(error);
-  }
-};
-
-
-export const getUserDetails = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-): Promise<void> => {
-  const { uid } = req.params;
-
-  try {
-      const user: UserRecord = await auth.getUser(uid);
-
-      res.status(200).json(user);
-  } catch (error: unknown) {
-      next(error);
   }
 };
