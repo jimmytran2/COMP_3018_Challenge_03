@@ -22,7 +22,10 @@ const authenticate = async (
   const token: string | undefined = req.headers.authorization?.split(" ")[1];
 
   if (!token) {
-    throw new AuthenticationError("Unauthorized: No token provided");
+    throw new AuthenticationError(
+      "Unauthorized: No token provided",
+      "TOKEN_NOT_FOUND"
+    );
   }
 
   try {
