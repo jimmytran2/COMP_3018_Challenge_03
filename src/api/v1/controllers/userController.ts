@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
-import { auth } from "../../../config/firebaseConfig";
 import { UserRecord } from "firebase-admin/auth";
+import { auth } from "../../../config/firebaseConfig";
+
 
 /**
  * Controller to get the user profile.
@@ -31,6 +32,22 @@ export const deleteUser = (
 ): void => {
   const userId: string = req.params.id;
   res.status(200).json({ message: `User ${userId} deleted by admin` });
+};
+
+export const getUserDetails = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> => {
+  const { uid } = req.params;
+
+  try {
+    const user: UserRecord = await auth.getUser(uid);
+
+    res.status(200).json(user);
+  } catch (error: unknown) {
+    next(error);
+  }
 };
 
 

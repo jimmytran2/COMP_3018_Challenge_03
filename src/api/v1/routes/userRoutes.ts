@@ -23,9 +23,10 @@ router.delete(
 );
 
 router.get(
-    "/:uid",
-    authenticate,
-    isAuthorized({ hasRole: ["admin", "Teacher"], allowSameUser: true }),
-    getUserDetails
+  "/:uid",
+  authenticate,
+  isAuthorized({ hasRole: ["admin", "Teacher"], allowSameUser: true }),
+  getUserDetails
 );
+
 export default router;

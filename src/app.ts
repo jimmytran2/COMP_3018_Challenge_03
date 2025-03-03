@@ -6,8 +6,7 @@ const app: Express = express();
 app.use(express.json());
 
 app.use("/api/v1/users", userRoutes);
-
-app.use("/api/v1/admin", adminRoutes)
+app.use("/api/v1/admin", adminRoutes);
 
 /**
  * Global error handler.
