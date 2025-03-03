@@ -4,7 +4,7 @@ import userRoutes from "./api/v1/routes/userRoutes";
 const app: Express = express();
 app.use(express.json());
 
-app.use("/api/v1/users", userRoutes);
+app.use("/api/v1/routes", userRoutes);
 
 /**
  * Global error handler.
